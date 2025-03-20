@@ -17,9 +17,21 @@ namespace SchoolAdmin
         // als je alle instanties van een klasse nodig hebt, gebruik dan static
 
 
-        public byte DetermineWorkLoad()
+        public double DetermineWorkLoad()
         {
-            return 1;
+            double total = 0.0;
+            for (int i = 0; i < Courses.Length; i++)
+            {
+                if (Courses[i] != null)
+                {
+                    total+=10;
+                }
+            }
+            return total;
+
+            // dit kan verschillen per student:
+            // iemand die ingeschreven is voor meer vakken gaat minder null-waarden hebben
+            // die zal ook een groter totaal aantal werkuren hebben
         }
 
         public double Average()
@@ -29,7 +41,7 @@ namespace SchoolAdmin
 
         public string GenerateNameCard()
         {
-            return "";
+            return $"{this.Name} (STUDENT)";
         }
 
         public void Quote(byte CourseIndex, byte score)
@@ -44,19 +56,7 @@ namespace SchoolAdmin
 
         public void ShowOverview()
         {
-            DateTime now = DateTime.Now;
-            TimeSpan age = now - Birthday;
-            Console.WriteLine($"{Name}, {age} jaar");
-            Console.WriteLine();
-            Console.WriteLine("Cijferrapport:");
-            Console.WriteLine("**********\r\n");
-            for (int i = 0; i < Courses.Length; i++)
-            {
-                for (int j = 0; j < CourseResults.Length; j++)
-                {
-                    Console.WriteLine($"{Courses[i]}\t\t{CourseResults[j]}");
-                }
-            }
+
         }
 
         public void DemonstrateStudent()

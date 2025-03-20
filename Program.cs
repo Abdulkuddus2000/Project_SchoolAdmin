@@ -19,7 +19,11 @@
             Student.StudentCounter++;
             student2.Courses[0] = "Communicatie";
 
-            student1.ShowOverview();
+            Console.WriteLine(student1.GenerateNameCard());
+            Console.WriteLine(student2.GenerateNameCard());
+
+            Console.WriteLine(student1.DetermineWorkLoad());
+            Console.WriteLine(student2.DetermineWorkLoad());
         }
     }
 }

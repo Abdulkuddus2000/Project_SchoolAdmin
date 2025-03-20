@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace SchoolAdmin
     {
         public string Name;
         public DateTime Birthday;
-        public string[] Courses = new string[5];
+        private string[] courses = new string[5];
         public uint StudentNumber;
         public static uint StudentCounter;
         // static want, gaat niet over maar 1 student, wel over de klasse Student
@@ -20,9 +21,9 @@ namespace SchoolAdmin
         public double DetermineWorkLoad()
         {
             double total = 0.0;
-            for (int i = 0; i < Courses.Length; i++)
+            for (int i = 0; i < courses.Length; i++)
             {
-                if (Courses[i] != null)
+                if (courses[i] != null)
                 {
                     total+=10;
                 }
@@ -43,26 +44,22 @@ namespace SchoolAdmin
         {
             return $"{this.Name} (STUDENT)";
         }
-
-        public void Quote(byte CourseIndex, byte score)
+        public void RegisterForCourse(string course)
         {
-
+            // binnenin de klasse kan je wel aan de private-fields, buiten de klasse niet
+            int freePlace = -1;
+            // -1, om de lus te beëindigen
+            for (int i = 0; i < courses.Length && freePlace == -1; i++)
+            {
+                if (this.courses[i] is null)
+                {
+                    freePlace = i;
+                }
+            }
+            if(freePlace > -1)
+            {
+                courses[freePlace] = course;
+            }
         }
-
-        public void RegisterForCourse(string courseName)
-        {
-            
-        }
-
-        public void ShowOverview()
-        {
-
-        }
-
-        public void DemonstrateStudent()
-        {
-            
-        }
-
     }
 }
